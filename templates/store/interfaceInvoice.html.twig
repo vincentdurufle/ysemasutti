@@ -1,0 +1,13 @@
+{% extends "interfacelayout.html.twig" %}
+
+{% block body %}
+    <div class="invoice-container">
+        {% for invoice in invoices %}
+            <div class="invoice">
+                <a href=" {{path('invoice_single_show', {'id': invoice.id})}} ">
+                    Facture N°{{invoice.id}}
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

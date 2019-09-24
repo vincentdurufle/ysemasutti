@@ -1,0 +1,14 @@
+{% extends 'interfacelayout.html.twig' %}
+
+{% block body %}
+    <div class="invoice-container">
+        {% for invoice in invoices %}
+            <div class="invoice-untreated">
+                <span>{{invoice.createdAt|ago}} </span>
+                <p>Article : "<strong> {{invoice.description.title}} </strong>" </p>
+                <p>Client : {{invoice.customer.name}}</p>
+                <a class="button" href=" {{path('invoice_done', {'id': invoice.id})}} ">Marquer comme traité ?</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

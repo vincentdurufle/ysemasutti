@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Ysé Masutti - Illustration</title>
+        <link rel="stylesheet" href="{{ absolute_url(asset('css/invoice.css')) }}">
+        <link rel="stylesheet" href="{{ absolute_url(asset('css/normalize.css')) }}">
+        <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700|Josefin+Slab&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <section class="main">
+            <div class="invoice-single-container">
+                <div class="invoice-top">
+                    <div>
+                        <img src=" {{absolute_url(asset('img/logo2.jpg'))}} " alt="">
+                        <p>Ysé Masutti</p>
+                        <p>{{invoice.address |capitalize}}</p>
+                        <p>Siret:
+                            {{invoice.siret}}</p>
+                    </div>
+                    <div>
+                        <h1>FACTURE N°{{invoice.id}}</h1>
+                        <span>Le
+                            {{invoice.createdAt |date("m/d/Y") }}</span>
+                    </div>
+                </div>
+                <div class="invoice-customer">
+                    <h1>Client</h1>
+                    <div>
+                        <p>
+                            {{invoice.customer.name}}
+                        </p>
+                        <p>
+                            {{invoice.customer.address}}
+                        </p>
+                        <p>
+                            {{invoice.customer.email}}
+                        </p>
+                    </div>
+                </div>
+                <div class="invoice-description">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th>Quantité</th>
+                                <th>Prix unitaire</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                {% set article = invoice.description.price |number_format(2, ',') %}
+                                <td>Impression de l'illustration "{{invoice.description.title}}" au format A4 signé par l'auteur.</td>
+                                <td>
+                                    1
+                                </td>
+                                <td>
+                                    {{article}}
+                                    €
+                                </td>
+                                <td>
+                                    {{article}}
+                                    €
+                                </td>
+                            </tr>
+                            <tr>
+                                {% set shipping = '7.50' |number_format(2, ',') %}
+                                <td>Frais de port</td>
+                                <td>
+                                    1
+                                </td>
+                                <td>{{ shipping }}
+                                    €</td>
+                                <td>{{ shipping |number_format(2, ',')}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                {% set total = shipping|number_format() + article|number_format() %}
+                                <td></td>
+                                <td></td>
+                                <td>Total :</td>
+                                <td>{{ total }}, 50 €</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

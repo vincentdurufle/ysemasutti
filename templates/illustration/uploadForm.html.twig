@@ -1,0 +1,30 @@
+{% extends 'interfacelayout.html.twig' %}
+
+{% block body %}
+    <div class="admin-container">
+        {{ form_start(form) }}
+        <div class="form-container">
+            <h1>Ajout d'illustration</h1>
+            {{ form_widget(form.title, {'attr': {placeholder: "Titre de l'illustration"}}) }}
+            {{ form_widget(form.text, {'attr': {'class': 'ckeditor'}}) }}
+            {{ form_widget(form.price, {'attr': {placeholder: "Prix de l'illustration"}}) }}
+            {{ form_label(form.active, 'Marquer vendu ?')}}
+            {{ form_widget(form.active) }}
+            {{ form_label(form.imageFile, 'Ajouter une image', {'label_attr': {
+            'class': 'upload'
+        }})}}
+            {{ form_widget(form.imageFile, {'attr': {
+            'class': 'upload'
+        }}) }}
+            <button class="button-submit" type="submit">Enregistrer</button>
+
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('js/ckeditor/adapters/jquery.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/ckeditor/ckeditor.js') }}" type="text/javascript"></script>
+{{ parent() }}
+{% endblock %}

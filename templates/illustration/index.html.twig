@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="illustration-container">
+        {% for illustration in illustrations %}
+            <div class="illustration">
+                {% if illustration.active == true %}
+                    <div class="illustration-div">
+                        <h2>{{ illustration.title }}</h2>
+                        <span class="overlay">
+                        </span>
+                        <img src=" {{ vich_uploader_asset(illustration, 'imageFile')| imagine_filter('squared_thumb') }} " alt="">
+                    <div class="ribbon ribbon-top-left">
+                        <span>vendu</span>
+                    </div>
+                    </div>
+                    {% else %}
+                        
+                <a href="{{path('illustration_single_show', {'slug' : illustration.slug})}} ">
+                    <h2>{{ illustration.title }}</h2>
+                    <span class="overlay">
+                        {{ illustration.price }}
+                        €</span>
+                    <img src=" {{ vich_uploader_asset(illustration, 'imageFile')| imagine_filter('squared_thumb') }} " alt="">
+                </a>
+                {% endif %}            
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

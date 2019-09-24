@@ -1,0 +1,36 @@
+{% extends "interfacelayout.html.twig" %}
+
+{% block body %}
+    <div class="admin-container">
+        {{ form_start(form) }}
+        <div class="form-container">
+            <h1>Ajout d'album</h1>
+            {{ form_widget(form.title, {'attr': {placeholder: "Titre de l'album"}}) }}
+            {{ form_widget(form.text, {'attr': {'class': 'ckeditor'}}) }}
+            {{ form_label(form.imageFile, 'Ajouter une image de couverture', {'label_attr': {
+            'class': 'upload'
+        }})}}
+            {{ form_widget(form.imageFile, {'attr': {
+            'class': 'upload'
+        }}) }}
+            {{ form_label(form.sliderFile, 'Ajouter les images du slider', {'label_attr': {
+            'class': 'upload'
+        }})}}
+            {{ form_widget(form.sliderFile, {'attr': {
+            'class': 'upload'
+        }}) }}
+            {{ form_widget(form.tags, {'attr': {placeholder: "Tags de l'album"}}) }}
+            <button class="button-submit" type="submit">Enregistrer</button>
+
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('js/ckeditor/adapters/jquery.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/ckeditor/ckeditor.js') }}" type="text/javascript"></script>
+{{ parent() }}
+{% endblock %}

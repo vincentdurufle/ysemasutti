@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Yse Masutti - Blog
+{% endblock %}
+
+{% block body %}
+    <div class="article-container">
+        {% for article in articles %}
+            <div class="article">
+                <h1>{{article.title}}</h1>
+                <span>
+                    {{article.datecreation|ago}}
+                </span>
+                <div class="article-img-container selected">
+                    <img src=" {{vich_uploader_asset(article, 'imageFile')}} " alt="">
+                </div>
+                <div class="article-text-container">
+                    {{article.text|raw}}
+                </div>
+            </div>
+        {% endfor %}
+
+        <a href="{{path('article_show_new', {'count': 1})}} " data-no-swup class="button">Précedents articles</a>
+    </div>
+{% endblock %} 
+
+{% block javascripts %}
+    {{parent()}}
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    {{ encore_entry_script_tags('ajax') }}
+
+{% endblock %}

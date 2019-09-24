@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+        <title>
+            {% block title %}
+                Ysé Masutti - Illustration
+            {% endblock %}
+        </title>
+        <meta property="og:url" content="https://www.ysemasutti.com/"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="Ysé Masutti"/>
+        <meta property="og:description" content="E-Shop - Portfolio - Blog - Contact"/>
+        <meta property="og:image" content="{{asset('img/logo2.jpg')}}"/>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+            <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
+            <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700|Josefin+Slab&display=swap" rel="stylesheet">
+        {% endblock %}
+    </head>
+    <body>
+        <section class="main" id="swup">
+            {% block menu %}
+                <nav>
+                    <div class="menu-container">
+                        <a href="{{path('illustration_show')}} ">
+                            <h2>Shop</h2>
+                        </a>
+                        <a href="{{path('album_show')}} ">
+                            <h2>Portfolio</h2>
+                        </a>
+                        <a href="{{path('home')}}">
+                            <h1>Ysé</h1>
+                        </a>
+                        <a href="{{path('article_show')}} ">
+                            <h2>Blog</h2>
+                        </a>
+                        <a href="{{path('about_show')}} ">
+                            <h2>About</h2>
+                        </a>
+                    </div>
+                </nav>
+            {% endblock %}
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="flash-{{ label }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            
+            {% block body %}{% endblock %}
+            
+        </section>
+        {% block footer %}
+            <footer>
+                Copyright &copy;
+                {{ "now"|date("Y") }}
+                Ysé Masutti | Tous droits réservés &mdash;
+                {% if app.user %}
+                    <a href="{{ path('admin_interface')}} ">
+                        Admin</a>
+                {% else %}
+                    <a href="{{ path('app_login')}} ">
+                        Admin</a>
+                {% endif %}
+            </footer>
+        {% endblock %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </body>
+</html>

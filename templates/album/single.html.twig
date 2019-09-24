@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="album-single-container">
+        <h1>{{ album.title }}</h1>
+        <div class="album-single">
+            <div class="album-single-text">
+                {{album.text | raw}}
+            </div>
+            <div class="diaporama-container">
+                {% for img in album.slider %}
+                    {% if loop.index == 1 %}
+                        <div class="img-container selected">
+                            <img src=" {{ asset('uploads/album/slider/' ~ img)}} " alt="">
+                            <span>1 /
+                                {{loop.length}}</span>
+                        </div>
+                    {% else %}
+                        <div class="img-container not-selected">
+                            <img src=" {{ asset('uploads/album/slider/' ~ img)}} " alt="">
+                            <span>{{loop.index}}
+                                /
+                                {{loop.length}}
+                            </span>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{parent()}}
+    {{ encore_entry_script_tags('slider') }}
+{% endblock %}

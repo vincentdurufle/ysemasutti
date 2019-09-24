@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+        <title>
+            {% block title %}
+                Ysé Masutti - Illustration
+            {% endblock %}
+        </title>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+            <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
+            <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700|Josefin+Slab&display=swap" rel="stylesheet">
+        {% endblock %}
+    </head>
+    <body>
+
+        <section class="dashboard">
+            {% block menu %}
+                <nav class="sidenav">
+                    <div class="sidenav-top">
+                        <h1>
+                            <a href=" {{path('home')}} ">Ysé</a>
+                        </h1>
+                    </div>
+                    <div class="sidenav-list">
+                        <ul>
+                            <li class="tab">
+                                <p>Shop</p>
+                                <ul class="submenu">
+                                    <li>
+                                        <a href=" {{path('illustration_upload')}} ">Ajouter</a>
+                                    </li>
+                                    <li>
+                                        <a href=" {{ path('illustration_admin_show') }} ">Editer</a>
+                                    </li>
+                                    <li>
+                                        <a href=" {{path('invoice_show')}} ">Factures</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="tab">
+                                <p>Portfolio</p>
+                                <ul class="submenu">
+                                    <li>
+                                        <a href=" {{path('album_upload')}} ">Nouvel Album</a>
+                                    </li>
+                                    <li>
+                                        <a href=" {{path('album_admin_show')}} ">Update Album</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="tab">
+                                <p>Blog</p>
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="{{path('article_upload')}}">Ajouter Article</a>
+                                    </li>
+                                    <li>
+                                        <a href=" {{path('admin_article_show')}} ">Editer Article</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="sidenav-bottom">
+                        <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                </nav>
+            {% endblock %}
+            <div class="content">
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="flash-{{ label }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                {% block body %}{% endblock %}
+            </div>
+
+
+            {% block javascripts %}
+                {{ encore_entry_script_tags('app') }}
+            {% endblock %}
+        </section>
+
+        <footer>
+            Copyright &copy;
+            {{ "now"|date("Y") }}
+            Ysé Masutti | Tous droits réservés &mdash;
+            {% if app.user %}
+                <a href="{{ path('admin_interface')}} ">
+                    Admin</a>
+            {% else %}
+                <a href="{{ path('app_login')}} ">
+                    Admin</a>
+            {% endif %}
+        </footer>
+    </body>
+</html>

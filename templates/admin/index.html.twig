@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{title}}
+{% endblock %}
+{% block menu "" %}
+
+{% block body %}
+    <canvas width="250" height"500" id="canvas"></canvas>
+    <div class="canvas-div">
+        <h1>Ysé Masutti</h1>
+        <a href="{{ path('home') }} " class="btn">Bienvenue</a>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('canvas') }}
+{% endblock %}

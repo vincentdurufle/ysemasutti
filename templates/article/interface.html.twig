@@ -1,0 +1,17 @@
+{% extends "interfacelayout.html.twig" %}
+
+{% block body %}
+
+    <div class="article-interface">
+        {% for article in articles %}
+            <div class="article-grid">
+                <a href=" {{path('article_update', {'slug': article.slug})}} ">
+                    <img src="{{ vich_uploader_asset(article, 'imageFile')| imagine_filter('squared_thumb_blog') }}" alt="">
+                    <h3> {{article.title}} </h3>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+    
+
+{% endblock %}

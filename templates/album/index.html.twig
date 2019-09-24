@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ysé Masutti - Portfolio
+{% endblock %}
+
+{% block body %}
+    <div class="album-container">
+        <div class="first-column">
+            <div class="album">
+                {% for album in albums %}
+                    {% if loop.length > 3 %}
+                        {% if loop.index in range(1, loop.length, 3)  %}
+                            <a href="{{path('album_show_single', {'slug' : album.slug})}} "><img src=" {{vich_uploader_asset(album, 'imageFile')}} " alt=""><span class="album-title">
+                                    {{album.title}}
+                                </span>
+                            </a>
+                        {% endif %}
+                    {% else %}
+                        {% if loop.index == 1 %}
+                            <a href="{{path('album_show_single', {'slug' : album.slug})}} "><img src=" {{vich_uploader_asset(album, 'imageFile')}} " alt=""><span class="album-title">
+                                    {{album.title}}
+                                </span>
+                            </a>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="second-column">
+            <div class="album">
+                {% for album in albums %}
+                    {% if loop.length > 4 %}
+                        {% if loop.index in range(2, loop.length, 3)  %}
+                            <a href="{{path('album_show_single', {'slug' : album.slug})}} "><img src=" {{vich_uploader_asset(album, 'imageFile')}} " alt=""><span class="album-title">
+                                    {{album.title}}
+                                </span>
+                            </a>
+                        {% endif %}
+                    {% else %}
+                        {% if loop.index == 2 %}
+                            <a href="{{path('album_show_single', {'slug' : album.slug})}} "><img src=" {{vich_uploader_asset(album, 'imageFile')}} " alt=""><span class="album-title">
+                                    {{album.title}}
+                                </span>
+                            </a>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="third-column">
+            <div class="album">
+                {% for album in albums %}
+                    {% if loop.length > 6 %}
+                        {% if loop.index in range(3, loop.length, 3) %}
+                            <a href="{{path('album_show_single', {'slug' : album.slug})}} "><img src=" {{vich_uploader_asset(album, 'imageFile')}} " alt=""><span class="album-title">
+                                    {{album.title}}
+                                </span>
+                            </a>
+                        {% endif %}
+                    {% else %}
+                        {% if loop.index == 3 %}
+                            <a href="{{path('album_show_single', {'slug' : album.slug})}} "><img src=" {{vich_uploader_asset(album, 'imageFile')}} " alt=""><span class="album-title">
+                                    {{album.title}}
+                                </span>
+                            </a>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,124 @@
+html,
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: scroll;
+    font-family: 'Josefin Slab', serif;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    background: transparent;
+}
+
+.main {
+    min-height: 96vh;
+}
+
+.invoice-single-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.invoice-top {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 50px 0;
+    border-bottom: 1px solid lightgray;
+}
+
+.invoice-top div:last-child {
+    align-self: flex-end;
+    margin-bottom: 16px;
+}
+
+.invoice-top img {
+    width: 100px;
+    border-radius: 50px;
+    height: auto;
+}
+
+.invoice-untreated {
+    background-color: var(--third);
+    color: white;
+    padding: 20px;
+    border-radius: 0.25rem;
+    box-shadow: var(--shadow);
+    font-size: 120%;
+}
+
+.invoice-untreated span {
+    font-weight: bold;
+}
+
+.invoice-untreated a {
+    background-color: black;
+}
+
+.invoice-untreated a:hover {
+    background-color: rgb(240, 116, 116);
+    color: white;
+}
+
+
+/* === GRID === */
+
+.invoice-description table {
+    margin: 50px 0;
+    display: grid;
+    border-collapse: collapse;
+    min-width: 100%;
+    grid-template-columns:
+        auto minmax(150px, 1.67fr) minmax(150px, 1.67fr) minmax(150px, 1.67fr);
+}
+
+thead,
+tbody,
+tfoot,
+tr {
+    display: contents;
+}
+
+th,
+td {
+    padding: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+th {
+    position: sticky;
+    top: 0;
+    background: #DD2772;
+    text-align: left;
+    font-weight: normal;
+    font-size: 1.1rem;
+    color: white;
+}
+
+tfoot tr td:nth-last-child(-n+2) {
+    font-weight: bold;
+    background-color: #DD2772;
+    color: white;
+}
+
+th:last-child {
+    border: 0;
+}
+
+td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #808080;
+}
+
+tr:nth-child(even) td {
+    background: #f8f6ff;
+}

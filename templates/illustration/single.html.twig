@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="illustration-single-container">
+        <h1>{{ illustration.title }}</h1>
+        <div class="illustration-single">
+            <div class="illlustration-single-text">
+                {{illustration.text | raw}}
+                <button class="button" id="checkout" data-stripe="{{stripe_session.id}}" href="">Acheter</button>
+            </div>
+            <div class="illustration-single-img">
+                <img src=" {{ vich_uploader_asset(illustration, 'imageFile')}} " alt="">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{parent()}}
+    <script src="https://js.stripe.com/v3/"></script>
+    {{ encore_entry_script_tags('stripe') }}
+
+{% endblock %}

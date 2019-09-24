@@ -1,0 +1,14 @@
+{% for article in articles %}
+            <div class="article">
+                <h1>{{article.title}}</h1>
+                <span>
+                    {{article.datecreation|ago}}
+                </span>
+                <div class="article-img-container selected">
+                    <img src=" {{vich_uploader_asset(article, 'imageFile')}} " alt="">
+                </div>
+                <div class="article-text-container">
+                    {{article.text|raw}}
+                </div>
+            </div>
+{% endfor %}

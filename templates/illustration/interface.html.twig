@@ -1,0 +1,35 @@
+{% extends "interfacelayout.html.twig" %}
+
+{% block body %}
+    <div class="illustration-container">
+        {% for illustration in illustrations %}
+            <div class="illustration">
+                {% if illustration.active == true %}
+                    <div class="illustration-div">
+                        <h2>{{ illustration.title }}</h2>
+                        <div class="overlay">
+                            <a href=" {{path('illustration_update', {'slug' : illustration.slug})}} " class="button">Edit</a>
+                            <a href=" {{path('illustration_delete', {'slug' : illustration.slug})}} " class="button">Supprimer</a>
+                        </div>
+                        <img src=" {{ vich_uploader_asset(illustration, 'imageFile')| imagine_filter('squared_thumb') }} " alt="">
+                        <div class="ribbon ribbon-top-left">
+                            <span>vendu</span>
+                        </div>
+                    </div>
+                {% else %}
+
+                    <div class="illustration-div">
+                        <h2>{{ illustration.title }}</h2>
+                        <div class="overlay">
+                            <a href="{{path('illustration_update', {'slug' : illustration.slug})}}" class="button">Edit</a>
+                            <a href=" {{path('illustration_delete', {'slug' : illustration.slug})}} " class="button">Supprimer</a>
+                        </div>
+                        <img src=" {{ vich_uploader_asset(illustration, 'imageFile')| imagine_filter('squared_thumb') }} " alt="">
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}
