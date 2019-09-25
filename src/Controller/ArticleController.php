@@ -59,7 +59,7 @@ class ArticleController extends AbstractController
             $manager->persist($article);
             $manager->flush();
 
-            return $this->redirectToRoute('article_admin_show');
+            return $this->redirectToRoute('admin_article_show');
         }
         return $this->render('article/uploadForm.html.twig', [
             'form' => $form->createView(),

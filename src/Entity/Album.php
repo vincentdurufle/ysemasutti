@@ -4,14 +4,17 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AlbumRepository")
  * @Vich\Uploadable
  */
-class Album
+class Album extends AbstractController
 {
     /**
      * @ORM\Id()
@@ -22,7 +25,7 @@ class Album
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     * 
+     *
      * @Gedmo\Slug(fields={"title"})
      */
     private $slug;
@@ -34,6 +37,7 @@ class Album
 
     /**
      * @ORM\Column(type="string", length=500)
+     * @Assert\Length(max=500, maxMessage="Le texte ne peut pas faire plus de 500 caractères")
      */
     private $text;
 
@@ -45,6 +49,7 @@ class Album
 
     /**
      * @Vich\UploadableField(mapping="album_images", fileNameProperty="cover")
+     * @Assert\File(maxSize="1M", maxSizeMessage="Le fichier est trop gros. Le poid Maximum est de 1mb")
      * @var File
      */
     private $imageFile;
@@ -111,7 +116,7 @@ class Album
         return $this->cover;
     }
 
-    public function setCover( ?string $cover): self
+    public function setCover(?string $cover): self
     {
         $this->cover = $cover;
 
@@ -167,4 +172,5 @@ class Album
 
         return $this;
     }
+
 }

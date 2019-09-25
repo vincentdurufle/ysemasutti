@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
+
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
@@ -22,7 +24,7 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=100, unique=true)
-     * 
+     *
      * @Gedmo\Slug(fields={"title"})
      */
     private $slug;
@@ -40,12 +42,14 @@ class Article
 
     /**
      * @Vich\UploadableField(mapping="article_images", fileNameProperty="cover")
+     * @Assert\File(maxSize="1M", maxSizeMessage="Le fichier est trop gros. Le poid Maximum est de 1mb")
      * @var File
      */
     private $imageFile;
 
     /**
      * @ORM\Column(type="string", length=1000)
+     * @Assert\Length(max="1000", maxMessage="Le texte ne peux pas faire plus de 1000 caractères")
      */
     private $text;
 

@@ -507,6 +507,11 @@ nav {
 .submenu a:visited {
     color: var(--primary);
     text-decoration: none;
+    padding: 5px 0;
+}
+
+.submenu li {
+    padding: 5px 0;
 }
 
 @keyframes sidenav {

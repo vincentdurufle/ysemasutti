@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\IllustrationRepository")
@@ -27,6 +29,7 @@ class Illustration
 
     /**
      * @ORM\Column(type="string", length=500)
+     * @Assert\Length(max="500", maxMessage="Le texte ne peux pas faire plus de 500 caractères")
      */
     private $text;
 
@@ -38,12 +41,14 @@ class Illustration
 
     /**
      * @Vich\UploadableField(mapping="illustration_images", fileNameProperty="image")
+     * @Assert\File(maxSize="1M", maxSizeMessage="Le fichier ne peux pas faire plus d'1Mb")
      * @var File
      */
     private $imageFile;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Type(type="integer", message="Merci de ne mettre que des chiffres")
      */
     private $price;
 
