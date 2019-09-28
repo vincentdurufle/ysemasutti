@@ -25,13 +25,24 @@ class ArticleController extends AbstractController
             'articles' => $articles,
         ]);
     }
+    /**
+     * @Route("/admin/blog/{id}/delete", name="article_delete")
+     */
+    public function delete(ArticleRepository $repo, $id, ObjectManager $manager)
+    {
+        $article = $repo->findOneBy(['id' => $id]);
+        $manager->remove($article);
+        $manager->flush();
+
+        return $this->redirectToRoute('admin_article_show');
+    }
 
     /**
      * @Route("/admin/blog", name="admin_article_show")
      */
     public function articleInterface(ArticleRepository $repo)
     {
-        $articles = $repo->findAll();
+        $articles = $repo->findBy([], ['id' => 'DESC']);
 
         return $this->render('article/interface.html.twig', [
             'articles' => $articles,
@@ -53,7 +64,6 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $this->addFlash('success', 'L\'article a bien été ajouté/mis à jour !');
 
             $manager->persist($article);
@@ -66,7 +76,12 @@ class ArticleController extends AbstractController
         ]);
     }
 
+
+
     /**
+     * query 3 articles with offset set by GET_['count']
+     * send it back as JsonResponse
+     * 
      * @Route("/blog/new", name="article_show_new")
      */
     public function articleResponse(ArticleRepository $repo):

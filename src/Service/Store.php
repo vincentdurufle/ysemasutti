@@ -7,7 +7,7 @@ use App\Repository\IllustrationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class StoreHelpers
+class Store
 {
     public function stripe(Request $request, IllustrationRepository $repo, ObjectManager $manager, Invoice $invoice = null) 
     {

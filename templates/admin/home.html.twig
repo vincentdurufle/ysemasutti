@@ -6,45 +6,39 @@
 
 {% block body %}
     <div class="home-container">
+        <span class="home-title">Bienvenue</span>
+        <p>Ysé Masutti - Illustratrice</p>
         <div class="news-container">
-            <a class="home-link" href="{{path('illustration_show')}} ">
-                <div class="illustration-column">
-                    <h3>Pour acheter mes illustrations c'est ici !</h3>
-                    {% for illustration in illustrations %}
-                        <div class="illustration-div column-content">
-                            <h4>{{ illustration.title }}</h4>
-                            <img src=" {{ vich_uploader_asset(illustration, 'imageFile')| imagine_filter('thumb_home') }} " alt="">
-                        </div>
-                    </a>
-                {% endfor %}
-            </div>
-                <a class="home-link" href="{{path('album_show')}} ">
-            <div class="album-column">
-                <h1 class="home-title">Bienvenue</h1>
-                    <h3>Mon portfolio</h3>
+            <a class="home-link" href="{{path('album_show')}} ">
+                <div class="album-column">
                     {% for album in albums %}
                         <div class="illustration-div column-content">
-                            <h4>
-                                {{album.title}}
-                            </h4>
+                            <h3>Mon portfolio</h3>
                             <img src=" {{vich_uploader_asset(album, 'imageFile')| imagine_filter('thumb_home')}} " alt="">
                         </div>
-                    </a>
-                {% endfor %}
-            </div>
-                <a class="home-link" href="{{path('article_show')}} ">
-            <div class="article-column">
-                    <h3>Mon actualités et pensées du moment</h3>
+                    {% endfor %}
+                </div>
+            </a>
+            <a class="home-link" href="{{path('article_show')}} ">
+                <div class="article-column">
                     {% for article in articles %}
                         <div class="illustration-div column-content">
-                            <h4>
-                                {{article.title}}
-                            </h4>
+                            <h3>Mon actualités et pensées du moment</h3>        
                             <img src=" {{vich_uploader_asset(article, 'imageFile')| imagine_filter('thumb_home')}} " alt="">
                         </div>
-                    </a>
-                {% endfor %}
-            </div>
+                    {% endfor %}
+                </div>
+            </a>
+            <a class="home-link" href="{{path('illustration_show')}} ">
+                <div class="illustration-column">
+                    {% for illustration in illustrations %}
+                        <div class="illustration-div column-content">        
+                            <h3>Pour acheter mes illustrations c'est ici !</h3>
+                            <img src=" {{ vich_uploader_asset(illustration, 'imageFile')| imagine_filter('thumb_home_last') }} " alt="">
+                        </div>
+                    {% endfor %}
+                </div>
+            </a>
         </div>
     {% endblock %}
 

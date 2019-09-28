@@ -15,7 +15,11 @@ liip_imagine:
         thumb_home: 
             quality: 100
             filters:
-                thumbnail  : { size : [250, 2git00], mode : outbound }
+                thumbnail  : { size : [280, 150], mode : outbound }
+        thumb_home_last: 
+            quality: 100
+            filters:
+                thumbnail  : { size : [600, 150], mode : outbound }
                     
         crop_filter: 
             filters:

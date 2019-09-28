@@ -14,6 +14,7 @@ body {
     padding: 0;
     overflow: scroll;
     font-family: var(--text);
+    background-color: white;
 }
 
 .main {
@@ -133,40 +134,49 @@ canvas {
     align-items: center;
     flex-direction: column;
     flex-wrap: wrap;
-    margin: 50px;
 }
 
 .news-container {
     display: flex;
     justify-content: center;
+    margin: 50px 0;
+    flex-wrap: wrap;
+}
+
+.home-link {
+    margin: 10px 15px;
+}
+
+.home-link:last-child {
+    width: 100%;
 }
 
 .illustration-column,
 .album-column,
 .article-column {
-    flex: 1 1 33%;
-    margin: 10px;
-    padding: 10px;
-    border-radius: 0.25rem;
+    flex: 1 1;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    background-color: white;
     transition: 0.5s ease-in-out;
+    color: white;
+    position: relative;
 }
 
 .illustration-column:hover,
 .album-column:hover,
 .article-column:hover {
-    background-color: var(--secondary);
-    color: white;
     transition: 0.5s;
 }
-.home-link:link,
-.home-link:visited {
-    color: var(--secondary);
+
+.column-content h3 {
+    position: absolute;
+    color: black;
+    padding: 0 10px;
 }
+
 .home-link {
     display: flex;
     justify-content: center;
@@ -174,32 +184,31 @@ canvas {
     align-items: center;
 }
 
-.home-link:hover {
-    color: white;
-}
-
-.album-column {
-    position: relative;
-    padding-top: 10%;
-}
-
-.column-content {
-    padding: 20px;
-}
-
 .home-title {
-    background-color: var(--secondary);
-    color: white;
-    position: absolute;
-    top: 5%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 100;
-    padding: 20px 20px;
+    color: var(--primary);
+    padding: 30px 50px 0 0;
+    margin: 30px;
+    font-weight: bold;
+    font-size: 200%;
+    border-top: 2px solid var(--primary);
+    align-self: flex-start;
+}
+
+.home-container p {
+    font-size: 300%;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.home-link div img {
+    width: 285px;
+    height: 150px;
     box-shadow: var(--shadow);
-    width: 80%;
-    border-radius: 0.25rem;
-    text-align: center;
+}
+
+.illustration-column div img {
+    width: 600px;
+    height: 150px;
 }
 
 
@@ -212,7 +221,7 @@ nav {
     display: flex;
     justify-content: center;
 }
-
+ 
 .menu-container {
     width: 60%;
     height: 15vh;
@@ -220,6 +229,7 @@ nav {
     justify-content: space-evenly;
     align-items: center;
     text-align: center;
+    position: relative;
 }
 
 .menu-container a:link,
@@ -693,6 +703,10 @@ textarea:focus {
 /* ====== ALBUM ===== */
 /* ================== */
 
+.content .album-container {
+    background-color: white;
+}
+
 .album-container {
     display: flex;
     justify-content: space-evenly;
@@ -876,20 +890,26 @@ textarea:focus {
 }
 
 .article-grid {
-    flex: 1 1 calc(33% - 110px);
+    flex: 33% 1 calc(33% - 110px);
     display: flex;
     justify-content: center;
-    align-items: center;
     background-color: var(--secondary);
-    margin: 50px;
-    border: 3px solid lightgray;
+    margin: 40px;
+    flex-direction: column;
+    border-radius: 0.25rem;
+    padding: 10px;
 }
 
 .article-grid h3 {
     color: white;
 }
 
-
+.article-grid img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    align-self: center;
+}
 
 /*=========================*/
 /*======== INVOICE ========*/

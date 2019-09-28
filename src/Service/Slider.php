@@ -9,6 +9,13 @@ use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 
 class Slider extends AbstractController
 {
+
+    /**
+     * upload multiple files to folder
+     *
+     * @param array $files
+     * @return array
+     */
     public function upload(array $files): array
     {
         $sliderArray = [];
@@ -27,6 +34,13 @@ class Slider extends AbstractController
         return $sliderArray;
     }
 
+
+    /**
+     * delete multiple files of server in slider folder
+     *
+     * @param array $files
+     * @return void
+     */
     public function delete(array $files)
     {
         $filesystem = new Filesystem;

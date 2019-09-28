@@ -2,26 +2,28 @@
 
 namespace App\Controller;
 
-use App\Entity\Invoice;
 use App\Repository\IllustrationRepository;
 use App\Repository\InvoiceRepository;
-use Doctrine\Common\Persistence\ObjectManager;
 use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Service\StoreHelpers;
+use App\Service\Store;
+use App\Entity\Invoice;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Persistence\ObjectManager;
 
 class StoreController extends AbstractController
 {
     /**
+     * Collects information from stripe after a payment and
+     * sends a 200 code back to stripe 
+     * 
      * @Route("/store/webhook", name="store")
      */
-    public function index(IllustrationRepository $repo, ObjectManager $manager, Invoice $invoice = null, StoreHelpers $store)
+    public function index(Request $request, IllustrationRepository $repo, ObjectManager $manager, Invoice $invoice = null, Store $store)
     {
-
-    
-
+        $store->stripe($request, $repo, $manager, $invoice);
 
         $response = new Response();
         return $response->setStatusCode(Response::HTTP_OK);

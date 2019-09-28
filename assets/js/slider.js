@@ -18,6 +18,13 @@ function event() {
         }
     })
 
+    const imgs = Array.from(document.querySelectorAll('.img-container img'));
+    imgs.map(img => {
+        img.addEventListener('click', () => {
+            plusDivs(1);
+        })
+    })
+
 }
 
 function plusDivs(n) {
@@ -42,6 +49,7 @@ function showDivs(n) {
     divs[count - 1].classList.add('selected');
     divs[count - 1].classList.remove('not-selected');
 }
+
 
 var count = 1;
 showDivs(count);

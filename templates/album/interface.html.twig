@@ -57,7 +57,7 @@
         <div class="third-column">
             <div class="album">
                 {% for album in albums %}
-                    {% if loop.length > 6 %}
+                    {% if loop.length > 5 %}
                         {% if loop.index in range(3, loop.length, 3) %}
                             <div><img src=" {{vich_uploader_asset(album, 'imageFile')}} " alt=""><span class="album-title">
                                     {{album.title}}
