@@ -21,16 +21,26 @@
         }}) }}
             {{ form_widget(form.tags, {'attr': {placeholder: "Tags de l'album"}}) }}
             <button class="button-submit" type="submit">Enregistrer</button>
+            {% if not form.vars.valid %}
+                <ul>
+                    {# Loop through every form item #}
+                    {% for child in form.children %}
+                        {# Display the errors of the form item #}
+                        {%for error in child.vars.errors%}
+                            <li>{{error.message}}</li>
+                            {%endfor%}
+                            {%endfor%}
+                        </ul>
+                        {%endif%}
+                    </div>
+                    {{ form_end(form) }}
+                </div>
 
-        </div>
-        {{ form_end(form) }}
-    </div>
 
+            {% endblock %}
 
-{% endblock %}
-
-{% block javascripts %}
-<script src="{{ asset('js/ckeditor/adapters/jquery.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/ckeditor/ckeditor.js') }}" type="text/javascript"></script>
-{{ parent() }}
-{% endblock %}
+            {% block javascripts %}
+                <script src="{{ asset('js/ckeditor/adapters/jquery.js') }}" type="text/javascript"></script>
+                <script src="{{ asset('js/ckeditor/ckeditor.js') }}" type="text/javascript"></script>
+                {{ parent() }}
+            {% endblock %}

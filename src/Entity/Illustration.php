@@ -41,7 +41,7 @@ class Illustration
 
     /**
      * @Vich\UploadableField(mapping="illustration_images", fileNameProperty="image")
-     * @Assert\File(maxSize="1M", maxSizeMessage="Le fichier ne peux pas faire plus d'1Mb")
+     * @Assert\File(maxSize="2M", maxSizeMessage="Le fichier ne peux pas faire plus de 2Mb")
      * @var File
      */
     private $imageFile;

@@ -9,7 +9,7 @@
                         <h2>{{ illustration.title }}</h2>
                         <span class="overlay">
                         </span>
-                        <img src=" {{ vich_uploader_asset(illustration, 'imageFile')| imagine_filter('squared_thumb') }} " alt="">
+                        <img src=" {{ vich_uploader_asset(illustration, 'imageFile')| imagine_filter('squared_thumb') }} " alt="{{illustration.title}}">
                     <div class="ribbon ribbon-top-left">
                         <span>vendu</span>
                     </div>
@@ -21,7 +21,7 @@
                     <span class="overlay">
                         {{ illustration.price }}
                         €</span>
-                    <img src=" {{ vich_uploader_asset(illustration, 'imageFile')| imagine_filter('squared_thumb') }} " alt="">
+                    <img src=" {{ vich_uploader_asset(illustration, 'imageFile')| imagine_filter('squared_thumb') }} " alt="{{illustration.title}}">
                 </a>
                 {% endif %}            
             </div>

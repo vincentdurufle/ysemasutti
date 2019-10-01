@@ -42,10 +42,12 @@ function onClickArticle(e) {
             button.style.display = 'none';
         }
     });
-    let count = 1;
-    count++;
-    this.search = this.search.replace(/count=1/g, `count=${count}`);
+    let iterable = 1;
+    iterable++;
+    this.search = this.search.replace(/count=1/g, `count=${iterable}`);
 }
+
+
 
 function init() {
     if (document.querySelector('#nav-icon')) {
@@ -60,13 +62,17 @@ function init() {
     }
     if (document.querySelector('.img-container')) {
         //lance slider avec un compte a rebours et permet de faire pause ou reprendre
-        function finalcountdown() {
+        function finalcountdown(exit) {
             const timer = setInterval(() => {
                 plusDivs(1)
             }, 6000);
+            if (exit === true) {
+                clearInterval(timer);
+            }
         }
 
-        function event() {
+        function event(exit) {
+            if (exit === true) return;
             //Fleche change le compteur +1 à droite -1 à gauche
             document.addEventListener('keydown', (e) => {
                 if (e.key == 'ArrowRight') {
@@ -89,10 +95,13 @@ function init() {
         }
 
         function plusDivs(n) {
+            if (n === null) return;
             showDivs(count += n);
         }
 
         function showDivs(n) {
+            if (n === null) return;
+
             let i;
             const divs = Array.from(document.querySelectorAll('.img-container'));
             //si on arrive au bout du diaporama => revenir au début
@@ -107,49 +116,66 @@ function init() {
                 divs[i].classList.add('not-selected');
                 divs[i].classList.remove('selected');
             }
-            divs[count - 1].classList.add('selected');
-            divs[count - 1].classList.remove('not-selected');
+            if (exit !== true) {
+                divs[count - 1].classList.add('selected');
+                divs[count - 1].classList.remove('not-selected');
+            }
         }
 
-        var count = 1;
+        count = 1;
+        exit = false;
         showDivs(count);
-        finalcountdown();
-        event();
-
-
+        finalcountdown(exit);
+        event(exit);
     }
     if (document.querySelector('.main .article-container')) {
         const axiosScript = script('https://unpkg.com/axios/dist/axios.min.js');
-        axiosScript.addEventListener('load', function() {
+        axiosScript.addEventListener('load', function () {
             document.querySelector('.button').addEventListener('click', onClickArticle);
         })
-        
+
     }
     if (document.querySelector('#checkout')) {
-        const stripeScript = script('https://js.stripe.com/v3/');
-        stripeScript.addEventListener('load', function() {
-            var stripe = Stripe('pk_test_SJ2a6jFKQeWCM47U3qbGHjfP00txxh25Je');
-            const session = document.querySelector('#checkout').dataset.stripe;
-            document.querySelector('#checkout').addEventListener('click', function () {
-                stripe.redirectToCheckout({
-                    sessionId: session,
-                }).then(function (result) {
-                    // If `redirectToCheckout` fails due to a browser or network
-                    // error, display the localized error message to your customer
-                    // using `result.error.message`.
-                });
+        if(!document.querySelector('.stripe')) {
+            const stripeScript = script('https://js.stripe.com/v3/');
+            stripeScript.addEventListener('load', function () {
+                var stripe = Stripe('pk_test_SJ2a6jFKQeWCM47U3qbGHjfP00txxh25Je');
+                const session = document.querySelector('#checkout').dataset.stripe;
+                document.querySelector('#checkout').addEventListener('click', function () {
+                    stripe.redirectToCheckout({
+                        sessionId: session,
+                    }).then(function (result) {
+                        // If `redirectToCheckout` fails due to a browser or network
+                        // error, display the localized error message to your customer
+                        // using `result.error.message`.
+                    });
+                })
             })
-        })
+        }
+    }
+}
+
+function unload() {
+    if (document.querySelector('.img-container')) {
+        count = null;
+        exit = true;
+
+    }
+    if (document.querySelector('.main .article-container')) {
+        document.querySelector('.button').removeEventListener('click', onClickArticle);
     }
 }
 
 function script(src) {
     const script = document.createElement('script');
     script.src = src;
+    script.classList.add('stripe');
     document.head.appendChild(script);
     return script;
 }
 
+var exit;
+var count;
 
 const swup = new Swup({
     plugins: [
@@ -161,5 +187,6 @@ const swup = new Swup({
 })
 
 init();
-
-document.addEventListener('swup:pageView', init);
+unload();
+swup.on('pageView', init);
+swup.on('willReplaceContent', unload);

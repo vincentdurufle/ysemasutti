@@ -12,7 +12,7 @@
                     {{article.datecreation|ago}}
                 </span>
                 <div class="article-img-container selected">
-                    <img src=" {{vich_uploader_asset(article, 'imageFile')}} " alt="">
+                    <img src=" {{vich_uploader_asset(article, 'imageFile')}} " alt="{{article.title}}">
                 </div>
                 <div class="article-text-container">
                     {{article.text|raw}}

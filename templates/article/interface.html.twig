@@ -5,10 +5,10 @@
     <div class="article-interface">
         {% for article in articles %}
             <div class="article-grid">
-                    <img src="{{ vich_uploader_asset(article, 'imageFile')| imagine_filter('squared_thumb_blog') }}" alt="">
+                    <img src="{{ vich_uploader_asset(article, 'imageFile')| imagine_filter('squared_thumb_blog') }}" alt="{{article.title}}">
                     <h3> {{article.title}} </h3>
-                <a class="button" href=" {{path('article_update', {'slug': article.slug})}} ">Edit</a>
-                <a class="button" href=" {{path('article_delete', {'id': article.id})}} ">Delete</a>
+                <a class="button" href=" {{path('article_update', {'slug': article.slug})}} ">Editer</a>
+                <a class="button" href=" {{path('article_delete', {'id': article.id})}} ">Supprimer</a>
             </div>
         {% endfor %}
     </div>

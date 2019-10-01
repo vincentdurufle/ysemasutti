@@ -14,6 +14,17 @@
             'class': 'upload'
         }}) }}
             <button class="button-submit" type="submit">Enregistrer</button>
+            {% if not form.vars.valid %}
+            <ul>
+                {# Loop through every form item #}
+                {% for child in form.children %}
+                    {# Display the errors of the form item #}
+                    {%for error in child.vars.errors%}
+                        <li>{{error.message}}</li>
+                        {%endfor%}
+                        {%endfor%}
+                    </ul>
+                    {%endif%}
         </div>
         {{form_end(form)}}
     </div>
