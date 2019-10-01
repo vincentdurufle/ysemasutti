@@ -36,7 +36,7 @@ class StoreController extends AbstractController
     public function success()
     {
         
-        \Stripe\Stripe::setApiKey('sk_test_B8sSiB1kCYozq7aP8DX68Xib00Gh5u9JtT');
+        \Stripe\Stripe::setApiKey($this->getParameter('STRIPE_APIKEY_PUBLIC'));
 
         return $this->render('store/success.html.twig', [
             
@@ -60,7 +60,7 @@ class StoreController extends AbstractController
      */
     public function invoice(InvoiceRepository $repo, $id, \Knp\Snappy\Pdf $snappy)
     {
-        $invoice = $repo->findOneBy(['id' => $id]);
+        $invoice = $repo->find($id);
 
         $html = $this->renderView('store/invoice.html.twig', [
             'invoice' => $invoice

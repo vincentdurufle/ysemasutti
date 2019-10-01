@@ -6,14 +6,22 @@ use App\Entity\Invoice;
 use App\Repository\IllustrationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class Store
 {
+    private $params;
+
+    public function __construct(ParameterBagInterface $params)
+    {
+        $this->params = $params;
+    }
+
     public function stripe(Request $request, IllustrationRepository $repo, ObjectManager $manager, Invoice $invoice = null) 
     {
         // Set your secret key: remember to change this to your live secret key in production
         // See your keys here: https://dashboard.stripe.com/account/apikeys
-        \Stripe\Stripe::setApiKey('sk_test_B8sSiB1kCYozq7aP8DX68Xib00Gh5u9JtT');
+        \Stripe\Stripe::setApiKey($this->params->get('STRIPE_APIKEY_PUBLIC'));
         $endpoint_secret = 'whsec_CW9QkrZWzDCQcDuFlcA88ekgkoIFXp2R';
 
         $header = 'HTTP_STRIPE_SIGNATURE';

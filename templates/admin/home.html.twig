@@ -15,6 +15,7 @@
                         <div class="illustration-div column-content">
                             <h3>Mon portfolio</h3>
                             <img src=" {{vich_uploader_asset(album, 'imageFile')| imagine_filter('thumb_home')}} " alt="">
+                            <span class="home-overlay first"></span>
                         </div>
                     {% endfor %}
                 </div>
@@ -25,6 +26,7 @@
                         <div class="illustration-div column-content">
                             <h3>Mon actualités et pensées du moment</h3>        
                             <img src=" {{vich_uploader_asset(article, 'imageFile')| imagine_filter('thumb_home')}} " alt="">
+                            <span class="home-overlay second"></span>
                         </div>
                     {% endfor %}
                 </div>
@@ -35,6 +37,7 @@
                         <div class="illustration-div column-content">        
                             <h3>Pour acheter mes illustrations c'est ici !</h3>
                             <img src=" {{ vich_uploader_asset(illustration, 'imageFile')| imagine_filter('thumb_home_last') }} " alt="">
+                            <span class="home-overlay"></span>
                         </div>
                     {% endfor %}
                 </div>

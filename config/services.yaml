@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     slider_directory: '%kernel.project_dir%/public/uploads/album/slider'
+    STRIPE_APIKEY_PUBLIC: '%env(resolve:STRIPE_APIKEY_PUBLIC)%'
 
 services:
     # default configuration for services in *this* file
