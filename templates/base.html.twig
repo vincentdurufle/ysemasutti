@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>
             {% block title %}
                 Ysé Masutti - Illustration
@@ -17,6 +17,8 @@
             {{ encore_entry_link_tags('app') }}
             <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
             <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700|Josefin+Slab&display=swap" rel="stylesheet">
+            <link rel="shortcut icon" href="{{asset('img/favicon.ico')}}" type="image/x-icon">
+            <link rel="icon" href="{{asset('img/favicon.ico')}}" type="image/x-icon">
         {% endblock %}
     </head>
     <body>

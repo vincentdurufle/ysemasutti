@@ -53,21 +53,21 @@ class IllustrationController extends AbstractController
 
         // Set your secret key: remember to change this to your live secret key in production
         // See your keys here: https://dashboard.stripe.com/account/apikeys
-        \Stripe\Stripe::setApiKey('sk_test_B8sSiB1kCYozq7aP8DX68Xib00Gh5u9JtT');
+        \Stripe\Stripe::setApiKey($this->getParameter('STRIPE_APIKEY_SECRET'));
 
         $session = \Stripe\Checkout\Session::create([
             'billing_address_collection' => 'required',
             'payment_method_types' => ['card'],
             'line_items' => [[
                 'name' => $illustration->getTitle(),
-                'description' => 'something',
-                'images' => ["https://74500d28.ngrok.io/$image"],
+                'description' => 'Illustration au format A4 signé par l\'auteur.',
+                'images' => ["https://ysemasutti.com/$image"],
                 'amount' => $illustration->getPrice(),
                 'currency' => 'eur',
                 'quantity' => 1,
             ]],
-            'success_url' => 'https://4a5f04b7.ngrok.io/shop/success?session_id={CHECKOUT_SESSION_ID}',
-            'cancel_url' => 'https://localhost:800/shop/'.$slug.'/cancel',
+            'success_url' => 'https://ysemasutti.com/shop/success?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => 'https://ysemasutti.com/shop/cancel',
         ]);
 
         return $this->render('illustration/single.html.twig', [

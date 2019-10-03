@@ -27,9 +27,8 @@ class StoreController extends AbstractController
 
         $response = new Response();
         return $response->setStatusCode(Response::HTTP_OK);
-
     }
-
+ 
     /**
      * @Route("/shop/success", name="shop_success")
      */

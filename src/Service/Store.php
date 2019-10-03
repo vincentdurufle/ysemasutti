@@ -21,8 +21,8 @@ class Store
     {
         // Set your secret key: remember to change this to your live secret key in production
         // See your keys here: https://dashboard.stripe.com/account/apikeys
-        \Stripe\Stripe::setApiKey($this->params->get('STRIPE_APIKEY_PUBLIC'));
-        $endpoint_secret = 'whsec_CW9QkrZWzDCQcDuFlcA88ekgkoIFXp2R';
+        \Stripe\Stripe::setApiKey($this->params->get('STRIPE_APIKEY_SECRET'));
+        $endpoint_secret = $this->params->get('STRIPE_WEBHOOK_SECRET');
 
         $header = 'HTTP_STRIPE_SIGNATURE';
         $sig_header = $request->server->get($header);
