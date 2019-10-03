@@ -11,13 +11,13 @@
                 {% for img in album.slider %}
                     {% if loop.index == 1 %}
                         <div class="img-container selected">
-                            <img src=" {{ asset('uploads/album/slider/' ~ img)}} " alt="{{album.tags}}">
+                            <img src="{{ asset('uploads/album/slider/' ~ img)| imagine_filter('scale_filter')}} " alt="{{album.tags}}">
                             <span>1 /
                                 {{loop.length}}</span>
                         </div>
                     {% else %}
                         <div class="img-container not-selected">
-                            <img src=" {{ asset('uploads/album/slider/' ~ img)}} " alt="{{album.tags}}">
+                            <img src="{{ asset('uploads/album/slider/' ~ img)| imagine_filter('scale_filter')}} " alt="{{album.tags}}">
                             <span>{{loop.index}}
                                 /
                                 {{loop.length}}

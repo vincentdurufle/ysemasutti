@@ -16,6 +16,7 @@
     </head>
     <body>
 
+                <span class="sidenav-icon">&#62;</span>
         <section class="dashboard">
             {% block menu %}
                 <nav class="sidenav">
@@ -44,10 +45,10 @@
                                 <p>Portfolio</p>
                                 <ul class="submenu">
                                     <li>
-                                        <a href=" {{path('album_upload')}} ">Nouvel Album</a>
+                                        <a href=" {{path('album_upload')}} ">Ajouter</a>
                                     </li>
                                     <li>
-                                        <a href=" {{path('album_admin_show')}} ">Update Album</a>
+                                        <a href=" {{path('album_admin_show')}} ">Editer</a>
                                     </li>
                                 </ul>
                             </li>
@@ -55,10 +56,10 @@
                                 <p>Blog</p>
                                 <ul class="submenu">
                                     <li>
-                                        <a href="{{path('article_upload')}}">Ajouter Article</a>
+                                        <a href="{{path('article_upload')}}">Ajouter</a>
                                     </li>
                                     <li>
-                                        <a href=" {{path('admin_article_show')}} ">Editer Article</a>
+                                        <a href=" {{path('admin_article_show')}} ">Editer</a>
                                     </li>
                                 </ul>
                             </li>
@@ -84,6 +85,7 @@
             {% block javascripts %}
                 {{ encore_entry_script_tags('app') }}
             {% endblock %}
+            
         </section>
 
         <footer>

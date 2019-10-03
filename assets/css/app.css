@@ -594,6 +594,10 @@ nav {
 /*========  ADMIN  ========*/
 /*=========================*/
 
+.sidenav-icon {
+    display: none;
+}
+
 form input[type=file] {
     opacity: 0;
     width: 0.1px;

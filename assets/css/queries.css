@@ -233,4 +233,50 @@
     footer {
         font-size: 70%;
     }
+
+    /* === ADMIN === */
+
+    .sidenav {
+        width: 0;
+        opacity: 0;
+        transition: 0.5s ease-in-out;
+        z-index: 500;
+    }
+    .content {
+        width: 100%;
+        margin: 0;
+    }
+    .sidenav-icon {
+        display: block;
+        position: absolute;
+        top: 10%;
+        left: 10%;
+        transform: translate(-50%, -50%);
+        color: white;
+        padding: 10px 15px;
+        border-radius: 50%;
+        background-color: var(--primary);
+        font-weight: bold;
+        font-size: 120%;
+        border: 2px solid black;
+        cursor: pointer;
+        opacity: 0.8s;
+        transition: all 0.5s;
+        position: fixed;
+        z-index: 1000;
+    }
+
+    .sidenavIconToggle {
+        transform: rotate(180deg);
+        transform-origin: center;
+        transition: all 0.5s;
+        z-index: 1000;
+        border: 2px solid white;
+    }
+
+    .sidenavToggle {
+        width: 100%;
+        opacity: 1;
+        transition: all 0.5s ease-in-out;
+    }
 }

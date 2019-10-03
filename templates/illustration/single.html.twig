@@ -9,7 +9,7 @@
                 <button data-no-swup class="button" id="checkout" data-stripe="{{stripe_session.id}}" href="">Acheter</button>
             </div>
             <div class="illustration-single-img">
-                <img src=" {{ vich_uploader_asset(illustration, 'imageFile')}} " alt="{{illustration.title}}">
+                <img src=" {{ vich_uploader_asset(illustration, 'imageFile')| imagine_filter('scale_filter')}} " alt="{{illustration.title}}">
             </div>
         </div>
     </div>

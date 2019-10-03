@@ -22,6 +22,15 @@ if (document.location.pathname == '/admin/illustration/add') {
     });
 }
 
+if(document.querySelector('.sidenav-icon')) {
+    function toggleNav() {
+        document.querySelector('.sidenav').classList.toggle('sidenavToggle');
+        this.classList.toggle('sidenavIconToggle');
+    }
+    const icon = document.querySelector('.sidenav-icon');
+
+    icon.addEventListener('click', toggleNav);
+}
 
 //fetch three articles with axios
 function onClickArticle(e) {
@@ -63,12 +72,10 @@ function init() {
     if (document.querySelector('.img-container')) {
         //lance slider avec un compte a rebours et permet de faire pause ou reprendre
         function finalcountdown(exit) {
-            const timer = setInterval(() => {
-                plusDivs(1)
+            timer = setInterval(() => {
+                plusDivs(1);
+                console.log("ok");
             }, 6000);
-            if (exit === true) {
-                clearInterval(timer);
-            }
         }
 
         function event(exit) {
@@ -159,6 +166,7 @@ function unload() {
     if (document.querySelector('.img-container')) {
         count = null;
         exit = true;
+        clearInterval(timer);
 
     }
     if (document.querySelector('.main .article-container')) {
@@ -173,7 +181,7 @@ function script(src) {
     document.head.appendChild(script);
     return script;
 }
-
+var timer;
 var exit;
 var count;
 

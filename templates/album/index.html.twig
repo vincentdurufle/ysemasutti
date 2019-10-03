@@ -10,14 +10,14 @@
                 {% for album in albums %}
                     {% if loop.length > 3 %}
                         {% if loop.index in range(1, loop.length, 3)  %}
-                            <a href="{{path('album_show_single', {'slug' : album.slug})}} "><img src=" {{vich_uploader_asset(album, 'imageFile')}} " alt="{{album.tags}}"><span class="album-title">
+                            <a href="{{path('album_show_single', {'slug' : album.slug})}} "><img src=" {{vich_uploader_asset(album, 'imageFile')| imagine_filter('scale_filter')}} " alt="{{album.tags}}"><span class="album-title">
                                     {{album.title}}
                                 </span>
                             </a>
                         {% endif %}
                     {% else %}
                         {% if loop.index == 1 %}
-                            <a href="{{path('album_show_single', {'slug' : album.slug})}} "><img src=" {{vich_uploader_asset(album, 'imageFile')}} " alt="{{album.tags}}"><span class="album-title">
+                            <a href="{{path('album_show_single', {'slug' : album.slug})}} "><img src=" {{vich_uploader_asset(album, 'imageFile')| imagine_filter('scale_filter')}} " alt="{{album.tags}}"><span class="album-title">
                                     {{album.title}}
                                 </span>
                             </a>
@@ -31,14 +31,14 @@
                 {% for album in albums %}
                     {% if loop.length > 4 %}
                         {% if loop.index in range(2, loop.length, 3)  %}
-                            <a href="{{path('album_show_single', {'slug' : album.slug})}} "><img src=" {{vich_uploader_asset(album, 'imageFile')}} " alt="{{album.tags}}"><span class="album-title">
+                            <a href="{{path('album_show_single', {'slug' : album.slug})}} "><img src=" {{vich_uploader_asset(album, 'imageFile')| imagine_filter('scale_filter')}} " alt="{{album.tags}}"><span class="album-title">
                                     {{album.title}}
                                 </span>
                             </a>
                         {% endif %}
                     {% else %}
                         {% if loop.index == 2 %}
-                            <a href="{{path('album_show_single', {'slug' : album.slug})}} "><img src=" {{vich_uploader_asset(album, 'imageFile')}} " alt="{{album.tags}}"><span class="album-title">
+                            <a href="{{path('album_show_single', {'slug' : album.slug})}} "><img src=" {{vich_uploader_asset(album, 'imageFile')| imagine_filter('scale_filter')}} " alt="{{album.tags}}"><span class="album-title">
                                     {{album.title}}
                                 </span>
                             </a>
@@ -52,14 +52,14 @@
                 {% for album in albums %}
                     {% if loop.length > 5 %}
                         {% if loop.index in range(3, loop.length, 3) %}
-                            <a href="{{path('album_show_single', {'slug' : album.slug})}} "><img src=" {{vich_uploader_asset(album, 'imageFile')}} " alt="{{album.tags}}"><span class="album-title">
+                            <a href="{{path('album_show_single', {'slug' : album.slug})}} "><img src=" {{vich_uploader_asset(album, 'imageFile')| imagine_filter('scale_filter')}} " alt="{{album.tags}}"><span class="album-title">
                                     {{album.title}}
                                 </span>
                             </a>
                         {% endif %}
                     {% else %}
                         {% if loop.index == 3 %}
-                            <a href="{{path('album_show_single', {'slug' : album.slug})}} "><img src=" {{vich_uploader_asset(album, 'imageFile')}} " alt="{{album.tags}}"><span class="album-title">
+                            <a href="{{path('album_show_single', {'slug' : album.slug})}} "><img src=" {{vich_uploader_asset(album, 'imageFile')| imagine_filter('scale_filter')}} " alt="{{album.tags}}"><span class="album-title">
                                     {{album.title}}
                                 </span>
                             </a>
