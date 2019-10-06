@@ -22,7 +22,7 @@ if (document.location.pathname == '/admin/illustration/add') {
     });
 }
 
-if (document.querySelector('.sidenav-icon')) {
+if(document.querySelector('.sidenav-icon')) {
     function toggleNav() {
         document.querySelector('.sidenav').classList.toggle('sidenavToggle');
         this.classList.toggle('sidenavIconToggle');
@@ -56,19 +56,18 @@ function onClickArticle(e) {
     this.search = this.search.replace(/count=1/g, `count=${iterable}`);
 }
 
-function mobileMenu() {
-    this.classList.toggle('open');
-    const menu = Array.from(document.querySelectorAll('#menu-tab'));
-    menu.map(tab => {
-        tab.classList.toggle('menu-dropdown-a');
-    })
-    document.querySelector('.menu-container').classList.toggle('menu-dropdown');
-}
+
 
 function init() {
     if (document.querySelector('#nav-icon')) {
-        document.querySelector('#nav-icon').addEventListener('click', mobileMenu);
-        document.querySelector('#nav-icon').addEventListener('touchstart', mobileMenu);
+        document.querySelector('#nav-icon').addEventListener('click', function () {
+            this.classList.toggle('open');
+            const menu = Array.from(document.querySelectorAll('#menu-tab'));
+            menu.map(tab => {
+                tab.classList.toggle('menu-dropdown-a');
+            })
+            this.parentElement.classList.toggle('menu-dropdown');
+        });
     }
     if (document.querySelector('.img-container')) {
         //lance slider avec un compte a rebours et permet de faire pause ou reprendre
@@ -144,7 +143,7 @@ function init() {
 
     }
     if (document.querySelector('#checkout')) {
-        if (!document.querySelector('.stripe')) {
+        if(!document.querySelector('.stripe')) {
             const stripeScript = script('https://js.stripe.com/v3/');
             stripeScript.addEventListener('load', function () {
                 var stripe = Stripe('pk_test_SJ2a6jFKQeWCM47U3qbGHjfP00txxh25Je');
