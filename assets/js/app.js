@@ -62,11 +62,11 @@ function init() {
     if (document.querySelector('#nav-icon')) {
         document.querySelector('#nav-icon').addEventListener('click', function () {
             this.classList.toggle('open');
-            this.parentElement.classList.toggle('menu-dropdown');
             const menu = Array.from(document.querySelectorAll('#menu-tab'));
             menu.map(tab => {
                 tab.classList.toggle('menu-dropdown-a');
             })
+            this.parentElement.classList.toggle('menu-dropdown');
         });
     }
     if (document.querySelector('.img-container')) {

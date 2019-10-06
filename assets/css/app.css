@@ -377,7 +377,7 @@ nav {
 }
 
 .menu-dropdown {
-    padding: 0 0 20% 0;
+    padding: 0 0 20% 0 !important;
     -webkit-animation: expand 0.5s ease-in-out;
     animation: expand 0.5s ease-in-out;
     -webkit-transition: 0.5s ease-in-out all;
