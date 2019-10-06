@@ -146,7 +146,7 @@ function init() {
         if(!document.querySelector('.stripe')) {
             const stripeScript = script('https://js.stripe.com/v3/');
             stripeScript.addEventListener('load', function () {
-                var stripe = Stripe('pk_test_SJ2a6jFKQeWCM47U3qbGHjfP00txxh25Je');
+                var stripe = Stripe('pk_live_hALK0BHcqzSdZDYe7iXoFDEA00IxhQUvex');
                 const session = document.querySelector('#checkout').dataset.stripe;
                 document.querySelector('#checkout').addEventListener('click', function () {
                     stripe.redirectToCheckout({
