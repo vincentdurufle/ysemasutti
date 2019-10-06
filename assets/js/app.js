@@ -67,6 +67,7 @@ function init() {
                 tab.classList.toggle('menu-dropdown-a');
             })
             this.parentElement.classList.toggle('menu-dropdown');
+            this.style.backgroundColor = "blue";
         });
     }
     if (document.querySelector('.img-container')) {

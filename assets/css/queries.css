@@ -31,14 +31,6 @@
         transition: 0.5s ease-in-out;
     }
 
-    .menu-dropdown {
-        padding-bottom: 15vh;
-        -webkit-animation: expand 0.5s ease-in-out;
-        animation: expand 0.5s ease-in-out;
-        -webkit-transition: 0.5s ease-in-out all;
-        -o-transition: 0.5s ease-in-out all;
-        transition: 0.5s ease-in-out all;
-    }
 
     .menu-dropdown-a {
         display: block !important;
