@@ -66,11 +66,7 @@ function init() {
             menu.map(tab => {
                 tab.classList.toggle('menu-dropdown-a');
             })
-            if(!document.querySelector('.menu-container .menu-dropdown')) {
-                document.querySelector('.menu-container').classList.add('menu-dropdown');
-            } else {
-                document.querySelector('.menu-container').classList.remove('menu-dropdown');
-            }
+            document.querySelector('.menu-container').classList.toggle('menu-dropdown');
         });
     }
     if (document.querySelector('.img-container')) {
