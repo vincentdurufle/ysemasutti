@@ -6,6 +6,8 @@
 parameters:
     slider_directory: '%kernel.project_dir%/public/uploads/album/slider'
     STRIPE_APIKEY_PUBLIC: '%env(resolve:STRIPE_APIKEY_PUBLIC)%'
+    STRIPE_APIKEY_SECRET: '%env(resolve:STRIPE_APIKEY_SECRET)%'
+    STRIPE_WEBHOOK_SECRET: '%env(resolve:STRIPE_WEBHOOK_SECRET)%'
 
 services:
     # default configuration for services in *this* file
