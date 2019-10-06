@@ -377,14 +377,32 @@ nav {
 }
 
 .menu-dropdown {
-    padding-bottom: 15vh;
+    padding: 0 0 20% 0;
     -webkit-animation: expand 0.5s ease-in-out;
     animation: expand 0.5s ease-in-out;
     -webkit-transition: 0.5s ease-in-out all;
     -o-transition: 0.5s ease-in-out all;
     transition: 0.5s ease-in-out all;
 }
+@-webkit-keyframes expand {
+    from {
+        padding: 0;
+    }
 
+    to {
+        padding: 0 0 20% 0;
+    }
+}
+
+@keyframes expand {
+    from {
+        padding: 0;
+    }
+
+    to {
+        padding: 0 0 20% 0;
+    }
+}
 /*=========================*/
 /*=====  ILLUSTRATION  ====*/
 /*=========================*/

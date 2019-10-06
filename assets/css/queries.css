@@ -63,25 +63,7 @@
         }
     }
 
-    @-webkit-keyframes expand {
-        from {
-            padding: 0;
-        }
-
-        to {
-            padding-bottom: 15vh;
-        }
-    }
-
-    @keyframes expand {
-        from {
-            padding: 0;
-        }
-
-        to {
-            padding-bottom: 15vh;
-        }
-    }
+    
 
     #nav-icon {
         width: 60px;
