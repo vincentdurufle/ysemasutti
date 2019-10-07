@@ -62,7 +62,7 @@ class IllustrationController extends AbstractController
                 'name' => $illustration->getTitle(),
                 'description' => 'Illustration au format A4 signé par l\'auteur.',
                 'images' => ["https://ysemasutti.com/$image"],
-                'amount' => $illustration->getPrice(),
+                'amount' => ($illustration->getPrice() * 100),
                 'currency' => 'eur',
                 'quantity' => 1,
             ]],

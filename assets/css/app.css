@@ -15,7 +15,12 @@ body {
     overflow: scroll;
     font-family: var(--text);
     background-color: white;
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
+
+
 
 .main {
     min-height: 96vh;
@@ -249,7 +254,7 @@ canvas {
 }
 
 .home-container p {
-    font-size: 300%;
+    font-size: 270%;
     margin: 10px 0;
     font-weight: bold;
 }
@@ -329,9 +334,9 @@ nav {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
+    -webkit-box-pack: space-around;
+        -ms-flex-pack: space-around;
+            justify-content: space-around;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
@@ -977,12 +982,12 @@ textarea:focus {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
-    -webkit-box-align: space-evenly;
-        -ms-flex-align: space-evenly;
-            align-items: space-evenly;
+    -webkit-box-pack: space-around;
+        -ms-flex-pack: space-around;
+            justify-content: space-around;
+    -webkit-box-align: space-around;
+        -ms-flex-align: space-around;
+            align-items: space-around;
     width: 100%;
     background-color: var(--primary);
 }

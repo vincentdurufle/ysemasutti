@@ -3,16 +3,27 @@
     <head>
         <meta charset="UTF-8">
         <title>Ysé Masutti - Illustration</title>
-        <link rel="stylesheet" href="{{ absolute_url(asset('css/invoice.css')) }}">
-        <link rel="stylesheet" href="{{ absolute_url(asset('css/normalize.css')) }}">
-        <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700|Josefin+Slab&display=swap" rel="stylesheet">
+        <style type="text/css">
+            th {
+                background: #DD2772;
+            }
+            tfoot tr td:nth-last-child(-n+2) {
+                background-color: #DD2772;
+            }
+            td {
+                color: #808080;
+            }
+            tr:nth-child(even) td {
+    background: #f8f6ff;
+}
+        </style>
     </head>
     <body>
         <section class="main">
             <div class="invoice-single-container">
                 <div class="invoice-top">
                     <div>
-                        <img src=" {{absolute_url(asset('img/logo2.jpg'))}} " alt="">
+                        <img src="{{absolute_url(asset('img/logo2.jpg'))}} " alt="" style="width:100px;">
                         <p>Ysé Masutti</p>
                         <p>{{invoice.address |capitalize}}</p>
                         <p>Siret:
@@ -20,9 +31,9 @@
                     </div>
                     <div>
                         <h1>FACTURE N°{{invoice.id}}</h1>
-                        <span>Le
-                            {{invoice.createdAt |date("m/d/Y") }}</span>
                     </div>
+                    <p>Créer le {{invoice.createdAt |date("d/m/Y")}} </p>
+                    <p>Vendu le {{invoice.createdAt |date("d/m/Y")}} </p>
                 </div>
                 <div class="invoice-customer">
                     <h1>Client</h1>
@@ -65,7 +76,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                {% set shipping = '7.50' |number_format(2, ',') %}
+                                {% set shipping = '10' |number_format(2, ',') %}
                                 <td>Frais de port</td>
                                 <td>
                                     1
@@ -80,8 +91,14 @@
                                 {% set total = shipping|number_format() + article|number_format() %}
                                 <td></td>
                                 <td></td>
-                                <td>Total :</td>
-                                <td>{{ total }}, 50 €</td>
+                                <td>Total HT :</td>
+                                <td>{{ total }} €</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Total TTC:</td>
+                                <td>{{ total }} €</td>
                             </tr>
                         </tfoot>
                     </table>
