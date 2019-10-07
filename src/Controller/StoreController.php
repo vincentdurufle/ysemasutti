@@ -92,4 +92,44 @@ class StoreController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/shop/illustration/{slug}", name="illustration_single_show")
+     */
+    public function illustrationPage(IllustrationRepository $repo, $slug)
+    {
+        $illustration = $repo->findOneBy(['slug' => $slug]);
+
+        $package = new Package(new EmptyVersionStrategy());
+        $image = $package->getUrl('uploads/illustration/' . $illustration->getImage() . '');
+
+        // Set your secret key: remember to change this to your live secret key in production
+        // See your keys here: https://dashboard.stripe.com/account/apikeys
+        \Stripe\Stripe::setApiKey($this->getParameter('STRIPE_APIKEY_SECRET'));
+
+        $session = \Stripe\Checkout\Session::create([
+            'billing_address_collection' => 'required',
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+                'name' => $illustration->getTitle(),
+                'description' => 'Illustration au format A4 signé par l\'auteur.',
+                'images' => ["https://ysemasutti.com/$image"],
+                'amount' => ($illustration->getPrice() * 100),
+                'currency' => 'eur',
+                'quantity' => 1,
+            ], [
+                'name' => 'Frais de port.',
+                'description' => 'Prix total pour frais de port.',
+                'amount' => 10 * 100,
+                'currency' => 'eur',
+                'quantity' => 1,
+            ]],
+            'success_url' => 'https://ysemasutti.com/shop/success?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => 'https://ysemasutti.com/shop/cancel',
+        ]);
+
+        return $this->render('illustration/single.html.twig', [
+            'illustration' => $illustration,
+            'stripe_session' => $session,
+        ]);
+    }
 }
