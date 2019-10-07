@@ -5,14 +5,12 @@ namespace App\Controller;
 use App\Entity\Illustration;
 use App\Form\IllustrationType;
 use App\Repository\IllustrationRepository;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Asset\Package;
 use Symfony\Component\Asset\VersionStrategy\EmptyVersionStrategy;
-use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-
-
+use Symfony\Component\Routing\Annotation\Route;
 
 class IllustrationController extends AbstractController
 {
@@ -27,7 +25,6 @@ class IllustrationController extends AbstractController
             'illustrations' => $illustrations,
         ]);
     }
-
 
     /**
      * @Route("/admin/illustrations", name="illustration_admin_show")
@@ -49,7 +46,7 @@ class IllustrationController extends AbstractController
         $illustration = $repo->findOneBy(['slug' => $slug]);
 
         $package = new Package(new EmptyVersionStrategy());
-        $image = $package->getUrl('uploads/illustration/'.$illustration->getImage().'');
+        $image = $package->getUrl('uploads/illustration/' . $illustration->getImage() . '');
 
         // Set your secret key: remember to change this to your live secret key in production
         // See your keys here: https://dashboard.stripe.com/account/apikeys
@@ -65,6 +62,12 @@ class IllustrationController extends AbstractController
                 'amount' => ($illustration->getPrice() * 100),
                 'currency' => 'eur',
                 'quantity' => 1,
+            ], [
+                'name' => 'Frais de port.',
+                'description' => 'Prix total pour frais de port.',
+                'amount' => 10 * 100,
+                'currency' => 'eur',
+                'quantity' => 1,
             ]],
             'success_url' => 'https://ysemasutti.com/shop/success?session_id={CHECKOUT_SESSION_ID}',
             'cancel_url' => 'https://ysemasutti.com/shop/cancel',
@@ -72,10 +75,9 @@ class IllustrationController extends AbstractController
 
         return $this->render('illustration/single.html.twig', [
             'illustration' => $illustration,
-            'stripe_session' => $session
+            'stripe_session' => $session,
         ]);
     }
-
 
     /**
      * @Route("/admin/illustration/add", name="illustration_upload")
@@ -83,26 +85,26 @@ class IllustrationController extends AbstractController
      */
     public function upload_form(Illustration $illustration = null, Request $request, ObjectManager $manager)
     {
-        
-        if(!$illustration) {
+
+        if (!$illustration) {
             $illustration = new Illustration();
         }
-            $form = $this->createForm(IllustrationType::class, $illustration);
+        $form = $this->createForm(IllustrationType::class, $illustration);
 
-            $form->handleRequest($request);
+        $form->handleRequest($request);
 
-            if($form->isSubmitted() && $form->isValid()) {
-                if(!$illustration->getId()) {
-                    $illustration->setActive(false);
-                }
-
-                $this->addFlash('success', 'L\'illustration a bien été ajouté/mis à jour !');
-
-                $manager->persist($illustration);
-                $manager->flush();
-
-                return $this->redirectToRoute('illustration_admin_show');
+        if ($form->isSubmitted() && $form->isValid()) {
+            if (!$illustration->getId()) {
+                $illustration->setActive(false);
             }
+
+            $this->addFlash('success', 'L\'illustration a bien été ajouté/mis à jour !');
+
+            $manager->persist($illustration);
+            $manager->flush();
+
+            return $this->redirectToRoute('illustration_admin_show');
+        }
         return $this->render('illustration/uploadForm.html.twig', [
             'form' => $form->createView(),
         ]);
