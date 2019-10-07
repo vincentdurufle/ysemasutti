@@ -2,17 +2,19 @@
 
 namespace App\Controller;
 
-use App\Entity\Invoice;
-use App\Repository\IllustrationRepository;
-use App\Repository\InvoiceRepository;
-use App\Service\Store;
-use Doctrine\Common\Persistence\ObjectManager;
 use Dompdf\Dompdf;
 use Dompdf\Options;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\Store;
+use App\Entity\Invoice;
+use Symfony\Component\Asset\Package;
+use App\Repository\InvoiceRepository;
+use App\Repository\IllustrationRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Asset\VersionStrategy\EmptyVersionStrategy;
 
 class StoreController extends AbstractController
 {
